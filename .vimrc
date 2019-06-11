@@ -33,7 +33,11 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:-
 nnoremap <C-l> :set list!<CR>:set number!<CR> 
 nnoremap <C-h> :set hlsearch!<CR>
 command InsertPdb :normal! Oimport pdb;pdb.set_trace()<ESC>
+command InsertPry :normal! Obinding.pry<ESC>
+cnoreabbrev pdb InsertPdb
+cnoreabbrev pry InsertPry
 autocmd Filetype python cnoreabbrev dbg InsertPdb
+autocmd Filetype ruby cnoreabbrev dbg InsertPry
 set expandtab
 set shiftwidth=2
 set tabstop=2
