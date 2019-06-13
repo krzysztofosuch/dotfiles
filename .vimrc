@@ -50,3 +50,10 @@ autocmd BufWritePre *spec.rb %s`\(end\n\)\( *it.*\)`\1\r\2`e
 set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.git
 let NERDTreeRespectWildIgnore=1
 
+fun! SetupCommandAlias(from, to)
+  exec 'cnoreabbrev <expr> '.a:from
+        \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+        \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfun
+call SetupCommandAlias("w!!","w !sudo tee %")
+
