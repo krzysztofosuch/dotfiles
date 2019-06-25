@@ -1,6 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
+set showtabline=2
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'krzysztofosuch/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'mileszs/ack.vim'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -34,10 +35,7 @@ nnoremap <C-l> :set list!<CR>:set number!<CR>
 nnoremap <C-h> :set hlsearch!<CR>
 command InsertPdb :normal! Oimport pdb;pdb.set_trace()<ESC>
 command InsertPry :normal! Obinding.pry<ESC>
-cnoreabbrev pdb InsertPdb
-cnoreabbrev pry InsertPry
-autocmd Filetype python cnoreabbrev dbg InsertPdb
-autocmd Filetype ruby cnoreabbrev dbg InsertPry
+command Dbg :InsertPdb
 set expandtab
 set shiftwidth=2
 set tabstop=2
@@ -50,3 +48,4 @@ autocmd BufWritePre *spec.rb %s`\(end\n\)\( *it.*\)`\1\r\2`e
 set wildignore+=*.pyc,*.o,*.obj,*.svn,*.swp,*.class,*.hg,*.DS_Store,*.git
 let NERDTreeRespectWildIgnore=1
 
+source ~/.vim/scripts.py
